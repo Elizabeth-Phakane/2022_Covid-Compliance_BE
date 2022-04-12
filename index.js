@@ -33,6 +33,8 @@ const retrieve_officer=require('./routes/retrieve_officer');
 const retrieve_all_form=require('./routes/retrieve_all_form');
 const delete_feedback=require('./routes/delete_feedback');
 const select_image=require('./routes/select_image');
+const healthform=require('./routes/healthform');
+const insert_notification=require('./routes/insert_notification');
 
 
 //instantiating 
@@ -78,7 +80,8 @@ app.use('/retrieve_officer',retrieve_officer);
 app.use('/retrieve_all_form',retrieve_all_form);
 app.use('/delete_feedback',delete_feedback);
 app.use('/select_image',select_image);
-
+app.use('/healthform',healthform);
+app.use('/insert_notification',insert_notification);
 
 //server
 app.listen(3000,()=>{console.log('server running')})
