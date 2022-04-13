@@ -46,7 +46,7 @@ router.put("/user",upload.single('profile_pic'), (req, res) => {
         console.log("No file upload");
     } else {
         console.log(req.file.filename)
-        var imgsrc = 'http://3000/image/' + req.file.filename
+        var imgsrc = 'http://localhost:3000/profile_pic/' + req.file.filename
         var insertData = `update user set  profile_pic='${imgsrc}' WHERE User_id ='${User_id}'`
         database.query(insertData, [imgsrc], (err, result) => {
             if (err) throw err

@@ -46,4 +46,10 @@ router.post("/image",upload.single('pic_path'), (req, res) => {
             console.log("file uploaded")
         })
     }
+
+res.json({
+
+    success:1,
+    imageUrl:`http://localhost:3000/pic_path/${req.file.filename}`
+})
 });
