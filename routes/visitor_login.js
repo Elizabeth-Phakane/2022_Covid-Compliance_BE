@@ -12,7 +12,7 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.post('/feedback',(req,res)=>{
+router.get('/visitor',(req,res)=>{
 
     
    
@@ -21,33 +21,34 @@ router.post('/feedback',(req,res)=>{
     //instatiating user variables
 
 
-    //let Feed_id =req.body.Feed_id;
-    let username=req.body.username;
-    //let Camp_id=req.body.Camp_id;
-    let Comment=req.body.Comment;
-    let date  =new Date();
+    let Visitor_id=req.body.Visitor_id;
+    let password=req.body.password;
+   
 
 //sending the variables to the database
 
 
 
-let qr=`insert into feedback(username,Comment,Date) values('${username}','${Comment}','${date.toDateString()}')`;
+let qr=`select * from visitor where Visitor_id ='${Visitor_id }' and Password='${password}' limit 1 `;
 
 database.query(qr,(err,result)=>{
 
-    if(err){console.log(err);
-      console.log(result,'result')
-      res.send({message:'data not inserted'});
-    }else{
-
+    if(err){console.log(err);}
+   console.log(result,'result')
+   if(result.length>0)
+   {
+    res.send({
+        message:'visitor found',
+        data:result
+        
+    });
+   }
+   else 
+   {
         res.send({
-            message:'data inserted',
-            username:username
-        });
-    }
-  
-
- 
+         message:'no visitor'
+    })
+  }
 
 });
 
@@ -66,7 +67,6 @@ const render = res.render;
             console.error(`Error in res.send | ${err.code} | ${err.message} | ${res.stack}`);
         }
     };
-    //next();
+    
 
 });
-

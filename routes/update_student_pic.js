@@ -25,7 +25,7 @@ var storage = multer.diskStorage({
     storage: storage
 });
  
-
+app.use('/profile_pic',express.static('public/images'));
 router.put("/user",upload.single('profile_pic'), (req, res) => {
 
    
@@ -54,4 +54,9 @@ router.put("/user",upload.single('profile_pic'), (req, res) => {
             console.log("file uploaded")
         })
     }
-});
+    res.json({
+
+        success:1,
+        imageUrl:`http://localhost:3000/profile_pic/${req.file.filename}`
+    })
+    });

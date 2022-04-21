@@ -40,14 +40,16 @@ let qr=`insert into user(User_id,Camp_id,First_name,Last_name,Gender,Type,Cellph
 
 database.query(qr,(err,result)=>{
 
-    if(err){console.log(err);}
+    if(err){console.log(err);
    console.log(result,'result')
-
+   res.send({message:'data not inserted'});
+    }
+    else{
         res.send({
             message:'data inserted'
         });
 
-        res.send({message:'data not inserted'});
+    }
 
 });
 

@@ -12,46 +12,36 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.post('/feedback',(req,res)=>{
+router.post('/notification',(req,res)=>{
 
-    
-   
     console.log(req.body,'createdata');
 
-    //instatiating user variables
-
-
-    //let Feed_id =req.body.Feed_id;
-    let username=req.body.username;
-    //let Camp_id=req.body.Camp_id;
-    let Comment=req.body.Comment;
-    let date  =new Date();
-
-//sending the variables to the database
+    let notification_id =req.body.notification_id;
+    let Admin_id=req.body.Admin_id;
+    let message=req.body.message;
 
 
 
-let qr=`insert into feedback(username,Comment,Date) values('${username}','${Comment}','${date.toDateString()}')`;
+let qr=`insert into notification(notification_id,admin_id,message) values('${notification_id}','${Admin_id}','${message}')`;
 
 database.query(qr,(err,result)=>{
 
     if(err){console.log(err);
-      console.log(result,'result')
-      res.send({message:'data not inserted'});
-    }else{
-
+    console.log(result,'result')
+    res.send({message:'notification not inserted'});
+    } 
+    else{
         res.send({
-            message:'data inserted',
-            username:username
+            message:'notification inserted'
         });
+
     }
-  
+        
+}); 
 
- 
 
-});
 
-const render = res.render;
+    const render = res.render;
     const send = res.send;
     res.render = function renderWrapper(...args) {
         Error.captureStackTrace(this);
@@ -66,7 +56,8 @@ const render = res.render;
             console.error(`Error in res.send | ${err.code} | ${err.message} | ${res.stack}`);
         }
     };
-    //next();
 
 });
+
+
 

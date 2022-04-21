@@ -12,42 +12,40 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.post('/feedback',(req,res)=>{
+router.post('/visitor',(req,res)=>{
 
-    
-   
     console.log(req.body,'createdata');
 
     //instatiating user variables
 
 
-    //let Feed_id =req.body.Feed_id;
-    let username=req.body.username;
-    //let Camp_id=req.body.Camp_id;
-    let Comment=req.body.Comment;
-    let date  =new Date();
+    let Visitor_id =req.body.Visitor_id;
+    let Campus_id=req.body.Campus_id;
+    let First_name=req.body.First_name;
+    let Last_name=req.body.Last_name;
+    let Gender=req.body.Gender;
+    let Cellphone_number=req.body.Cellphone_number;
+    let Email=req.body.Email;
+    let Password= req.body.Password;
 
-//sending the variables to the database
+//Sending the variables to the database
+//Password encryption 
 
 
-
-let qr=`insert into feedback(username,Comment,Date) values('${username}','${Comment}','${date.toDateString()}')`;
+let qr=`insert into visitor(Visitor_id,Campus_id,First_name,Last_name,Gender,Cellphone_number,Email,Password) values('${Visitor_id}','${Campus_id}','${First_name}','${Last_name}','${Gender}','${Cellphone_number}','${Email}','${Password}')`;
 
 database.query(qr,(err,result)=>{
 
     if(err){console.log(err);
-      console.log(result,'result')
-      res.send({message:'data not inserted'});
-    }else{
-
-        res.send({
-            message:'data inserted',
-            username:username
-        });
+   console.log(result,'result')
+   res.send({message:'data not inserted'});
     }
-  
+    else{
+        res.send({
+            message:'data inserted'
+        });
 
- 
+    }
 
 });
 
@@ -69,4 +67,3 @@ const render = res.render;
     //next();
 
 });
-

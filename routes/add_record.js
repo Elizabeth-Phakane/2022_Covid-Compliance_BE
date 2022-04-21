@@ -32,15 +32,18 @@ let qr=`insert into record(Office_id,Form_check,Date,Tempareture,isAllowedEntren
 
 database.query(qr,(err,result)=>{
 
-    if(err){console.log(err);}
+    if(err){console.log(err);
     console.log(result,'result')
+    res.send({message:'data not inserted'});
 
+    }
+    else{
         res.send({
             message:'data inserted'
         });
 
-        res.send({message:'data not inserted'});
-    })
+    }
+    });
 
 
 

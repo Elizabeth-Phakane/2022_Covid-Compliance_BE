@@ -37,6 +37,10 @@ const upload_image=require('./routes/upload_image');
 const delete_image=require('./routes/delete_image');
 const update_student_pic=require('./routes/update_student_pic');
 const add_student_image=require('./routes/add_student_image');
+const delete_notification=require('./routes/delete_notification');
+const add_notification=require('./routes/add_notification');
+const add_visitor=require('./routes/add_visitor');
+const visitor_login=require('./routes/visitor_login');
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -86,10 +90,10 @@ app.use('/upload_image',upload_image);
 app.use('/delete_image',delete_image);
 app.use('/update_student_pic',update_student_pic);
 app.use('/add_student_image',add_student_image);
-
-
-
-
+app.use('/delete_notification',delete_notification);
+app.use('/add_notification',add_notification);
+app.use('/add_visitor',add_visitor);
+app.use('/visitor_login',visitor_login);
 
 //server
 app.listen(3000,()=>{console.log('server running')})

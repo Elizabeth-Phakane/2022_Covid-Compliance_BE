@@ -18,7 +18,7 @@ router.delete('/notification/:notification_id',(req,res)=>{
    
           res.send(
               {
-                  message:'data deleted '
+                  message:'notification deleted '
               }
           )
 
