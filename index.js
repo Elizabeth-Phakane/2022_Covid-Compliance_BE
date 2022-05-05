@@ -38,6 +38,8 @@ const insert_notification=require('./routes/insert_notification');
 const states=require('./routes/states');
 const flue=require('./routes/flue');
 const insert_vaccinationCard=require('./routes/insert_vaccinationCard');
+const delete_news_feed=require('./routes/delete_news_feed');
+delete_news_feed
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -86,6 +88,7 @@ app.use('/insert_notification',insert_notification);
 app.use('/states',states);
 app.use('/flue',flue);
 app.use('/insert_vaccinationCard',insert_vaccinationCard);
+app.use('/delete_news_feed',delete_news_feed)
 
 
 //server
