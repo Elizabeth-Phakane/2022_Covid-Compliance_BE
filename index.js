@@ -35,8 +35,9 @@ const delete_feedback=require('./routes/delete_feedback');
 const select_image=require('./routes/select_image');
 const healthform=require('./routes/healthform');
 const insert_notification=require('./routes/insert_notification');
-
-
+const states=require('./routes/states');
+const flue=require('./routes/flue');
+const insert_vaccinationCard=require('./routes/insert_vaccinationCard');
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -82,6 +83,10 @@ app.use('/delete_feedback',delete_feedback);
 app.use('/select_image',select_image);
 app.use('/healthform',healthform);
 app.use('/insert_notification',insert_notification);
+app.use('/states',states);
+app.use('/flue',flue);
+app.use('/insert_vaccinationCard',insert_vaccinationCard);
+
 
 //server
 app.listen(3000,()=>{console.log('server running')})
