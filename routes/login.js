@@ -4,7 +4,11 @@ const bodyparser=require('body-parser');
 const cors = require('cors');
 const mysql=require('mysql2');
 const router = express.Router();
+var cryptr = require('cryptr'),
+cryptr = new cryptr ('Password');
 const app=express();
+
+
 module.exports = router;
 
 app.use(cors());
@@ -15,17 +19,15 @@ const database=require('./database');
 
 router.post('/user',(req,res)=>{
 
-    
-   
     console.log(req.body,'createdata');
 
     //instatiating user variables
 
 
     let User_id =req.body.User_id;
-    let Password=req.body.Password;
-   
-
+    let Password =req.body.Password;
+    var decstring = cryptr.decrypt('Password');
+    
 //sending the variables to the database
 
 
@@ -34,26 +36,27 @@ let qr=`select * from user where User_id ='${User_id}' and Password='${Password}
 
 database.query(qr,(err,result)=>{
 
-    if(err){console.log(err);}
+    if(err){console.log(err);
    console.log(result,'result')
-   if(result.length>0)
-   {
-    res.send({
-        message:'Successful',
-        data:result,
-        User_id:User_id
-        
-    });
-   }
-   else 
-   {
         res.send({
          message:'Unsuccessful'
     })
-  }
+    }
+    else{
+
+        if(result.length>0)
+        {
+         res.send({
+             message:'Successful',
+             data:result,
+             User_id:User_id
+             
+         });
+        }
+     
+    }
 
 });
-
 const render = res.render;
     const send = res.send;
     res.render = function renderWrapper(...args) {

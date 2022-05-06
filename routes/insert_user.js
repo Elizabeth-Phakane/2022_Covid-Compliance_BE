@@ -4,10 +4,12 @@ const bodyparser=require('body-parser');
 const cors = require('cors');
 const mysql=require('mysql2');
 const router = express.Router();
+var cryptr = require('cryptr'),
+cryptr = new cryptr ('Password');
 const app=express();
 
 //pasword encryption
-const bcrypt = require('bcryptjs');
+//const bcrypt = require('bcryptjs');
 
 
 module.exports = router;
@@ -18,7 +20,7 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.post('/user',async (req,res)=>{
+router.post('/user',(req,res)=>{
 
     
    
@@ -38,12 +40,12 @@ router.post('/user',async (req,res)=>{
     let firstNames=req.body.firstNames;
 
     //hash password
-    const hash = await bcrypt.hash(password,10);
+    var encstring = cryptr.encrypt('password');
 
 
 //sending the variables to the database
 
-let  qr=`insert into user(User_id,Camp_id,First_name,Last_name,Gender,Type,Cellphone_number,Email,Password) values('${userId}','${campId}','${firstNames}','${lastName}','${gender}','${type}','${cellphone}','${ email}','${hash}')`;
+let  qr=`insert into user(User_id,Camp_id,First_name,Last_name,Gender,Type,Cellphone_number,Email,Password) values('${userId}','${campId}','${firstNames}','${lastName}','${gender}','${type}','${cellphone}','${ email}','${encstring}')`;
 
 database.query(qr,(err,result)=>{
 
