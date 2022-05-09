@@ -43,6 +43,7 @@ const add_visitor=require('./routes/add_visitor');
 const visitor_login=require('./routes/login_visitor');
 const insert_user=require('./routes/insert_user');
 const select_news=require('./routes/select_news');
+const insert_news=require('./routes/insert_news');
 //instantiating 
 app.use(cors());
 app.use(bodyparser.json());
@@ -98,6 +99,7 @@ app.use('/add_visitor',add_visitor);
 app.use('/visitor_login',visitor_login);
 app.use('/insert_user',insert_user);
 app.use('/select_news',select_news);
+app.use('/insert_news',insert_news);
 
 //server
 app.listen(3000,()=>{console.log('server running')})

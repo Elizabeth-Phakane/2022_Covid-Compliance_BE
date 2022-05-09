@@ -6,8 +6,6 @@ module.exports = router;
 const database=require('./database');
 
 
-
-//onst database=require('./database');
 // retrieve entered student 
 
 router.get('/record',(req,res)=>{
