@@ -13,7 +13,7 @@ app.use(bodyparser.json());
 const database=require('./database');
 
 
-router.post('/officer',(req,res)=>{
+router.post('/delete_news_feed',(req,res)=>{
 
     
     console.log(req.body,'createdata');
