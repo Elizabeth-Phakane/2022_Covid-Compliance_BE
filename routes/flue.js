@@ -9,7 +9,7 @@ const database=require('./database');
 
 router.get('/flue/flue',(req,res)=>{
     
-     let sql = 'select COUNT(formId)Total from healthForm where recentCough="yes"';
+     let sql = 'select COUNT(Form_id)Total from healthForm where Recent_cough="Yes"';
 
     database.query(sql,(err,result)=>{
          if (err){
